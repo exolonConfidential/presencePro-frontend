@@ -47,6 +47,7 @@ type Student = {
   rollNo: string;
   enrolled: boolean;
   fingerprintId?: string;
+  isEnrolling: boolean
 };
 
 type StudentResponse = {
@@ -90,12 +91,10 @@ const AdminPage = () => {
   // Enrole Fingerprint
   const handleEnrollToggle = async (
     rollNo: string,
-    currentlyEnrolled: boolean
+    isCurrentlyEnrolling: boolean
   ) => {
     try {
-      const endpoint = currentlyEnrolled
-        ? `http://localhost:3000/student/unenroll?rollNo=${rollNo}`
-        : `http://localhost:3000/student/enroll?rollNo=${rollNo}`;
+      const endpoint = `http://localhost:3000/student/enroll?rollNo=${rollNo}`
 
       const res = await axios.put(
         endpoint,
@@ -110,7 +109,7 @@ const AdminPage = () => {
       if (res.status === 200) {
         setStudents((prev) =>
           prev.map((s) =>
-            s.rollNo === rollNo ? { ...s, enrolled: !currentlyEnrolled } : s
+            s.rollNo === rollNo ? { ...s, isEnrolling: !isCurrentlyEnrolling } : s
           )
         );
       }
@@ -208,10 +207,11 @@ const AdminPage = () => {
                     <Button
                       size="sm"
                       className="cursor-pointer"
-                      variant={s.enrolled ? "destructive" : "default"}
-                      onClick={() => handleEnrollToggle(s.rollNo, s.enrolled)}
+                      disabled = {s.isEnrolling}
+                      variant={s.isEnrolling ? "destructive" : "default"}
+                      onClick={() => handleEnrollToggle(s.rollNo, s.isEnrolling)}
                     >
-                      {s.enrolled ? "Delete" : "Enroll"}
+                      {s.isEnrolling ? "Pending" : s.enrolled ? "Enrolled" : "Enroll"}
                     </Button>
                     <Button
                       size="sm"
