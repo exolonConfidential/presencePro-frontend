@@ -1,9 +1,13 @@
+import { StudentProfile } from "@/components/student/student-profile"
+import { useParams } from "react-router-dom"
 
 
 const Student = () =>{
+    const { rollNo } = useParams()
+    if(!rollNo) return <div></div>
     return (
-        <div className="h-full w-full flex items-center justify-center">
-            hello from student page
+        <div >
+           <StudentProfile url="http://localhost:3000/admin/studentHome" credential= {rollNo} navigateUrl="/admin"/>
         </div>
     )
 }

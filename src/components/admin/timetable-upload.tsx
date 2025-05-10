@@ -222,7 +222,7 @@ export default function TimetableForm() {
               {loading ? "Uploading..." : "Upload"}
             </Button>
             <Button
-              onClick={() => navigate("/timetable")}
+              onClick={() => navigate("/admin/timetable")}
               className="cursor-pointer"
             >
               View

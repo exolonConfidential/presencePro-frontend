@@ -27,6 +27,7 @@ import {
   TableCell,
 } from "../ui/table";
 import { getPaginationRange } from "@/utils/getPaginationRange";
+import { useNavigate } from "react-router-dom";
 
 const years = ["One", "Two", "Three", "Four"];
 const branches = [
@@ -65,9 +66,14 @@ const AdminPage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate()
   const token = localStorage.getItem("token");
   const range = getPaginationRange(page, totalPages);
+
+  //Hanlde View
+  const viewRedirect = (rollNo: string) =>{
+    navigate(`/admin/student/${rollNo}`, {replace: true})
+  }
 
   // Delete Student
   const removeStudent = async (rollNo: string) => {
@@ -140,7 +146,7 @@ const AdminPage = () => {
       setStudents(res.data.students);
       setTotalPages(Math.ceil(res.data.total / PAGE_SIZE));
     } catch (err) {
-      console.error(err);
+      
     }
     setLoading(false);
   };
@@ -220,6 +226,14 @@ const AdminPage = () => {
                       onClick={() => removeStudent(s.rollNo)}
                     >
                       Remove
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="cursor-pointer"
+                      variant="secondary"
+                      onClick={() => viewRedirect(s.rollNo) }
+                    >
+                      View
                     </Button>
                   </TableCell>
                 </TableRow>

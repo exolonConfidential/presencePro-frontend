@@ -1,7 +1,7 @@
 import AdminPage from "@/components/admin/admin-home"
 
 
-const adminHome = () =>{
+const AdminHome = () =>{
     return (
         <div className="w-full h-full flex items-center justify-center">
           <AdminPage/>
@@ -9,4 +9,4 @@ const adminHome = () =>{
     )
 }
 
-export default adminHome
+export default AdminHome

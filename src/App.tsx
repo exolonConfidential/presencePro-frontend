@@ -17,6 +17,9 @@ import RedirectToHome from "./components/auth/invalid-url-redirect";
 import Subjects from "./pages/admin/subjects";
 import Student from "./pages/admin/student";
 import Timetable from "./pages/admin/timetable";
+import SubjectAttendance from "./pages/student/subject-attendane";
+import AdminSubjectAttendance from "./pages/admin/admin-subject-attendance";
+
 
 function App() {
   return (
@@ -54,8 +57,10 @@ function App() {
             <Route path="upload-timetable" element={<UploadTimetable />} />
             <Route path="upload-subjects" element={<UploadSubjects />} />
             <Route path= "subjects"   element={<Subjects/>} />
-            <Route path= "student"   element={<Student/>} />
+            <Route path= "student/:rollNo"   element={<Student/>} />
             <Route path= "timetable"   element={<Timetable/>} />
+            <Route path="subject/:subjectCode/rollNo/:rollNo" element={<AdminSubjectAttendance/>}/>
+            
 
           </Route>
 
@@ -69,6 +74,7 @@ function App() {
             }
           >
             <Route index element={<StudentHome />} />
+            <Route path="subject/:subjectCode/rollNo/:rollNo" element={<SubjectAttendance/>}/>
           </Route>
 
           { /* Auto Redirects the user to home if none of the above routes matched  */}

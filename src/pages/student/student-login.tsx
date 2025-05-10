@@ -1,4 +1,5 @@
-import AuroraText from "@/components/magicui/aurora-text-hover"
+import { StudentLogin } from "@/components/student/student-login"
+
 
 
 
@@ -7,7 +8,7 @@ import AuroraText from "@/components/magicui/aurora-text-hover"
 const studentLogin =  () =>{
     return (
         <div className="flex h-screen w-full justify-center items-center">
-            <AuroraText lines="hello"/>
+            <StudentLogin/>
         </div>
     )
 }
