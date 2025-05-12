@@ -43,7 +43,7 @@ export const StudentProfile = ({ url, credential, navigateUrl }: props) => {
   const token = localStorage.getItem("token");
 
   const handleView = (subjectCode: string) => {
-    navigate(`${navigateUrl}/subject/${subjectCode}/rollNo/${credential}`, {replace: true});
+    navigate(`${navigateUrl}/subject/${subjectCode}/rollNo/${credential}`);
   };
 
   const fetchStudentHome = async () => {

@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationEllipsis,
 } from "../ui/pagination";
-import { Card } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import {
   Select,
   SelectContent,
@@ -156,8 +156,9 @@ const AdminPage = () => {
   }, [yearFilter, branchFilter, page]);
 
   return (
-    <div>
-      <Card className="p-2">
+   
+      <Card className="p-2 w-auto">
+        <CardContent className="overflow-x-auto overflow-y-auto max-h-[80vh]">
         <div className="flex gap-4">
           <Select onValueChange={setYearFilter} value={yearFilter}>
             <SelectTrigger className="w-[180px]">
@@ -276,8 +277,9 @@ const AdminPage = () => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
+        </CardContent>
       </Card>
-    </div>
+    
   );
 };
 

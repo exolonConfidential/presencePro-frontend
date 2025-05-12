@@ -10,18 +10,23 @@ const homePage = () => {
   return (
     <div className="flex flex-col h-screen w-screen">
       {/**navbar */}
-      <div className="h-[80px] w-full p-4  grid grid-cols-3">
-        <div className="flex justify-start items-center text-2xl pl-4">
+      <div className="h-[80px] w-full p-4  grid md:grid-cols-3 grid-cols-2">
+        <div className="flex justify-start items-center md:text-2xl  text-xl pl-4">
           <Link to={"/"} className="flex font-semibold">
             <AnimatedShinyText>PresencePro</AnimatedShinyText>
           </Link>
         </div>
-        <div className="flex justify-center items-center text-[17px] gap-6">
+        <div className="md:flex justify-center items-center md:text-[17px] gap-6 hidden text-l ">
           <Link to={"/about"}>
             <AnimatedShinyText>About</AnimatedShinyText>
           </Link>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex justify-end items-center gap-2">
+          <div className="flex justify-center items-center md:text-[17px] gap-6 text-l md:hidden">
+            <Link to={"/about"}>
+              <AnimatedShinyText>About</AnimatedShinyText>
+            </Link>
+          </div>
           <div className="cursor-pointer">
             <ModeToggle />
           </div>
@@ -38,7 +43,7 @@ const homePage = () => {
           >
             Attendance with PresencePro
           </h1>
-          <div className="hidden dark:inline-block">
+          <div className="hidden dark:inline-block ">
             <AuroraText lines="Attendance with PresencePro" />
           </div>
 
@@ -47,7 +52,7 @@ const homePage = () => {
             and ease. Seamlessly manage student records, subject-wise logs, and
             live device monitoring—all in one modern, responsive dashboard.
           </p>
-          <div className="flex justify-around gap-[20px]">
+          <div className="flex justify-around md:gap-[20px] gap-2">
             <Link to={"/studentLogin"}>
               <LoginButton>Student Login</LoginButton>
             </Link>
