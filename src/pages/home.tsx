@@ -11,7 +11,7 @@ const homePage = () => {
     <div className="flex flex-col h-screen w-screen">
       {/**navbar */}
       <div className="h-[80px] w-full p-4  grid md:grid-cols-3 grid-cols-2">
-        <div className="flex justify-start items-center md:text-2xl  text-xl pl-4">
+        <div className="flex justify-start items-center md:text-2xl  text-xl pl-2 md:pl-4">
           <Link to={"/"} className="flex font-semibold">
             <AnimatedShinyText>PresencePro</AnimatedShinyText>
           </Link>
