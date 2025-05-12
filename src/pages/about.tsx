@@ -77,7 +77,7 @@ export default function AboutPage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {["Shikhar Singh", "Team Member 2", "Team Member 3", "Team Member 4"].map((name, idx) => (
+            {["Shikhar Singh", "Manas Puri", "Pavan Yadav", "Prince Chaurasia"].map((name, idx) => (
               <motion.div
                 key={name}
                 initial={{ y: 20, opacity: 0 }}
@@ -90,9 +90,9 @@ export default function AboutPage() {
                   {
                     name === "Shikhar Singh"
                       ? "Full Stack Developer & Hardware Integrator"
-                      : name === "Team Member 2"
+                      : name === "Manas Puri"
                       ? "Backend API & Database Designer"
-                      : name === "Team Member 3"
+                      : name === "Pavan Yadav"
                       ? "UI/UX Designer & Frontend Engineer"
                       : "Testing & Deployment Specialist"
                   }
