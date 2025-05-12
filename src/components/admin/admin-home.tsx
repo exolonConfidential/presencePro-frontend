@@ -48,7 +48,7 @@ type Student = {
   rollNo: string;
   enrolled: boolean;
   fingerprintId?: string;
-  isEnrolling: boolean
+  isEnrolling: boolean;
 };
 
 type StudentResponse = {
@@ -66,20 +66,21 @@ const AdminPage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const range = getPaginationRange(page, totalPages);
 
   //Hanlde View
-  const viewRedirect = (rollNo: string) =>{
-    navigate(`/admin/student/${rollNo}`, {replace: true})
-  }
+  const viewRedirect = (rollNo: string) => {
+    navigate(`/admin/student/${rollNo}`, { replace: true });
+  };
 
   // Delete Student
   const removeStudent = async (rollNo: string) => {
     try {
       const res = await axios.delete(
-        `https://presence-pro-backend.onrender.com/student/remove?rollNo=${rollNo}`,{
+        `https://presence-pro-backend.onrender.com/student/remove?rollNo=${rollNo}`,
+        {
           headers: {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -89,9 +90,7 @@ const AdminPage = () => {
       if (res.status === 200) {
         setStudents((prev) => prev.filter((s) => s.rollNo !== rollNo));
       }
-    } catch (error) {
-     
-    }
+    } catch (error) {}
   };
 
   // Enrole Fingerprint
@@ -100,7 +99,7 @@ const AdminPage = () => {
     isCurrentlyEnrolling: boolean
   ) => {
     try {
-      const endpoint = `https://presence-pro-backend.onrender.com/student/enroll?rollNo=${rollNo}`
+      const endpoint = `https://presence-pro-backend.onrender.com/student/enroll?rollNo=${rollNo}`;
 
       const res = await axios.put(
         endpoint,
@@ -115,7 +114,9 @@ const AdminPage = () => {
       if (res.status === 200) {
         setStudents((prev) =>
           prev.map((s) =>
-            s.rollNo === rollNo ? { ...s, isEnrolling: !isCurrentlyEnrolling } : s
+            s.rollNo === rollNo
+              ? { ...s, isEnrolling: !isCurrentlyEnrolling }
+              : s
           )
         );
       }
@@ -145,9 +146,7 @@ const AdminPage = () => {
       );
       setStudents(res.data.students);
       setTotalPages(Math.ceil(res.data.total / PAGE_SIZE));
-    } catch (err) {
-      
-    }
+    } catch (err) {}
     setLoading(false);
   };
 
@@ -156,12 +155,11 @@ const AdminPage = () => {
   }, [yearFilter, branchFilter, page]);
 
   return (
-   
-      <Card className="p-2 w-auto">
-        <CardContent className="overflow-x-auto overflow-y-auto max-h-[80vh]">
-        <div className="flex gap-4">
+    <Card className="p-2 w-11/12 md:w-9/12 mt-4">
+      <CardContent className="overflow-y-auto overflow-x-auto">
+        <div className="flex flex-col gap-4 sm:flex-row">
           <Select onValueChange={setYearFilter} value={yearFilter}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Select Year" />
             </SelectTrigger>
             <SelectContent>
@@ -175,7 +173,7 @@ const AdminPage = () => {
           </Select>
 
           <Select onValueChange={setBranchFilter} value={branchFilter}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Select Branch" />
             </SelectTrigger>
             <SelectContent>
@@ -188,59 +186,70 @@ const AdminPage = () => {
             </SelectContent>
           </Select>
         </div>
+
         {loading ? (
           "Loading..."
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Roll No</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Year</TableHead>
-                <TableHead>Branch</TableHead>
-                <TableHead>Fingerprint Id</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {students.map((s) => (
-                <TableRow key={s.id} >
-                  <TableCell>{s.rollNo}</TableCell>
-                  <TableCell>{s.name}</TableCell>
-                  <TableCell>{s.year}</TableCell>
-                  <TableCell>{s.branch}</TableCell>
-                  <TableCell>{s.fingerprintId}</TableCell>
-                  <TableCell className="flex gap-2">
-                    <Button
-                      size="sm"
-                      className="cursor-pointer"
-                      disabled = {s.isEnrolling}
-                      variant={s.isEnrolling ? "destructive" : "default"}
-                      onClick={() => handleEnrollToggle(s.rollNo, s.isEnrolling)}
-                    >
-                      {s.isEnrolling ? "Pending" : s.enrolled ? "Enrolled" : "Enroll"}
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="cursor-pointer"
-                      variant="destructive"
-                      onClick={() => removeStudent(s.rollNo)}
-                    >
-                      Remove
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="cursor-pointer"
-                      variant="secondary"
-                      onClick={() => viewRedirect(s.rollNo) }
-                    >
-                      View
-                    </Button>
-                  </TableCell>
+          <div className="overflow-x-auto mt-4">
+            <Table className="min-w-[700px]">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Roll No</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Year</TableHead>
+                  <TableHead>Branch</TableHead>
+                  <TableHead>Fingerprint Id</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {students.map((s) => (
+                  <TableRow key={s.id}>
+                    <TableCell>{s.rollNo}</TableCell>
+                    <TableCell>{s.name}</TableCell>
+                    <TableCell>{s.year}</TableCell>
+                    <TableCell>{s.branch}</TableCell>
+                    <TableCell>{s.fingerprintId}</TableCell>
+                    <TableCell>
+                      <div className="flex flex-wrap gap-2">
+                        <Button
+                          size="sm"
+                          className="cursor-pointer"
+                          disabled={s.isEnrolling}
+                          variant={s.isEnrolling ? "destructive" : "default"}
+                          onClick={() =>
+                            handleEnrollToggle(s.rollNo, s.isEnrolling)
+                          }
+                        >
+                          {s.isEnrolling
+                            ? "Pending"
+                            : s.enrolled
+                            ? "Enrolled"
+                            : "Enroll"}
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="cursor-pointer"
+                          variant="destructive"
+                          onClick={() => removeStudent(s.rollNo)}
+                        >
+                          Remove
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="cursor-pointer"
+                          variant="secondary"
+                          onClick={() => viewRedirect(s.rollNo)}
+                        >
+                          View
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         )}
 
         <Pagination>
@@ -277,9 +286,8 @@ const AdminPage = () => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-        </CardContent>
-      </Card>
-    
+      </CardContent>
+    </Card>
   );
 };
 
