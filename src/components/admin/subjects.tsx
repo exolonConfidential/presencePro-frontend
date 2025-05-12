@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Button } from "../ui/button";
 
@@ -64,11 +64,12 @@ export const AllSubjects = () => {
   },[])
 
   return(
-    <Card className="p-2">
+    <Card className="p-2 w-11/12 md:w-9/12">
+      <CardContent className="overflow-y-auto overflow-x-auto">
         <div className="w-full text-center">
             <h1>All Subjects</h1>
         </div>
-        <div>
+        <div className="overflow-x-auto mt-4">
             {loading ? "Loading..." : (
             <Table>
                 <TableHeader>
@@ -94,6 +95,7 @@ export const AllSubjects = () => {
             </Table>
         )}
         </div>
+        </CardContent>
     </Card>
   )
 

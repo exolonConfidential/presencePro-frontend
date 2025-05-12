@@ -17,7 +17,7 @@ const studentLayout = () =>{
       <div className="flex flex-col h-screen">
         <nav>
           <div className="h-[80px] w-full p-4  grid md:grid-cols-3 grid-cols-2">
-            <div className="flex justify-start items-center text-2xl pl-4">
+            <div className="flex justify-start items-center text-xl md:text-2xl pl-4">
               <span className="cursor-pointer">
                 <AnimatedShinyText onClick={() => navigate("/")}>
                   PresencePro
