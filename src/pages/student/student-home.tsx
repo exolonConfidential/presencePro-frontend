@@ -7,7 +7,7 @@ const studentHome = () =>{
     if(!rollNo) return <div></div>
     return (
         <div>
-            <StudentProfile url="http://localhost:3000/student/studentHome" credential = {rollNo} navigateUrl="/student"/>
+            <StudentProfile url="https://presence-pro-backend.onrender.com/student/studentHome" credential = {rollNo} navigateUrl="/student"/>
         </div>
     )
 }

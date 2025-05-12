@@ -62,7 +62,7 @@ export default function TimetableForm() {
       setError(null);
       setSuccess(null);
       const requestConfig = {
-        url: "http://localhost:3000/admin/addTimetable",
+        url: "https://presence-pro-backend.onrender.com/admin/addTimetable",
         method: "post",
         data: data,
         headers: {

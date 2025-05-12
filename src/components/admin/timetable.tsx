@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { Card } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import {
   Select,
   SelectContent,
@@ -39,7 +39,7 @@ export const Timetable = () => {
   const handleRemove = async (id:string)=>{
     try {
         const requestConfig = {
-            url: "http://localhost:3000/admin/TtRemoveById",
+            url: "https://presence-pro-backend.onrender.com/admin/TtRemoveById",
             method: 'delete',
             params: {
                 id: id
@@ -64,7 +64,7 @@ export const Timetable = () => {
       const queryParams = new URLSearchParams();
       if (yearFilter) queryParams.append("year", yearFilter);
       const requestConfig = {
-        url: `http://localhost:3000/admin/timetable?${queryParams}`,
+        url: `https://presence-pro-backend.onrender.com/admin/timetable?${queryParams}`,
         method: "get",
         headers: {
           authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export const Timetable = () => {
       if (res.status == 200) setTimetable(res.data.timetable);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -85,7 +85,8 @@ export const Timetable = () => {
   }, [yearFilter]);
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 overflow-auto">
+      <CardContent className="overflow-x-auto overflow-y-auto max-h-[80vh]">
       <div>
         <Select onValueChange={setYearFilter} value={yearFilter}>
           <SelectTrigger className="w-[180px]">
@@ -100,7 +101,7 @@ export const Timetable = () => {
           </SelectContent>
         </Select>
       </div>
-      <div>
+      <div className="mt-2">
         {loading ? (
           "Loading..."
         ) : (
@@ -134,6 +135,7 @@ export const Timetable = () => {
           </Table>
         )}
       </div>
+      </CardContent>
     </Card>
   );
 };

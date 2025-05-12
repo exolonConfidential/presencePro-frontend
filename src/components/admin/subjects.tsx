@@ -20,7 +20,7 @@ export const AllSubjects = () => {
   const removeSubjects = async(code: string)=>{
       try {
         const requestConfig = {
-          url: "http://localhost:3000/admin/removeSubByCode",
+          url: "https://presence-pro-backend.onrender.com/admin/removeSubByCode",
           method: "delete",
           params: {
             code: code
@@ -35,7 +35,7 @@ export const AllSubjects = () => {
           setSubjects((p)=> p.filter((s) => s.code !== code))
         }
       } catch (error) {
-        console.log(error)
+        
       }
   }
 
@@ -44,7 +44,7 @@ export const AllSubjects = () => {
       setLoading(true);
       const requestConfig = {
         method: "get",
-        url: "http://localhost:3000/admin/allSub",
+        url: "https://presence-pro-backend.onrender.com/admin/allSub",
         headers: {
           authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const AllSubjects = () => {
       const res = await axios.request(requestConfig)
       setSubjects(res.data.allSubs);
     } catch (error) {
-      console.log(error)
+      
     } finally {
       setLoading(false);
     }

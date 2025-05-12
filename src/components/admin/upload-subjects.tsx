@@ -57,7 +57,7 @@ export const UploadSubjects = () => {
       setError(null);
       setSuccess(null);
       const requestConfig = {
-        url: "http://localhost:3000/admin/addSub",
+        url: "https://presence-pro-backend.onrender.com/admin/addSub",
         method: "post",
         data: values,
         headers: {

@@ -65,7 +65,7 @@ export const StudentProfile = ({ url, credential, navigateUrl }: props) => {
       setSubjects(res.data.subjects);
       setStudent(res.data.student);
     } catch (error) {
-      console.log(error);
+      
     } finally {
       setLoading(false);
     }
@@ -124,7 +124,8 @@ export const StudentProfile = ({ url, credential, navigateUrl }: props) => {
                   <TableCell>{subject.year}</TableCell>
                   <TableCell className="text-right">
                     <Button
-                      variant="outline"
+                      className="cursor-pointer"
+                      variant="secondary"
                       onClick={() => handleView(subject.code)}
                     >
                       View

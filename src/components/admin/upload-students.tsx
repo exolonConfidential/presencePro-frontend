@@ -53,7 +53,7 @@ const UploadStudent = () => {
       setLoading(true);
       setError(null);
       setSuccess(null);
-      const res = await axios.post("http://localhost:3000/student/addStudents", values, {
+      const res = await axios.post("https://presence-pro-backend.onrender.com/student/addStudents", values, {
         headers: {
           authorization: `Bearer ${token}`,
           "Content-Type": "application/json"

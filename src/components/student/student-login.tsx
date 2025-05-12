@@ -42,7 +42,7 @@ export const StudentLogin = () => {
     setError("");
     try {
       const response = await axios.post(
-        "http://localhost:3000/student/signin",
+        "https://presence-pro-backend.onrender.com/student/signin",
         values
       );
       const token = response.data.token;
@@ -69,7 +69,7 @@ export const StudentLogin = () => {
   return (
     <CardWrapper
       heading="Student"
-      subheading="Login with you Roll Number and Password"
+      subheading="Login with your Roll Number and Password"
       backButtonLabel="click here"
       backButtonHref="/"
     >

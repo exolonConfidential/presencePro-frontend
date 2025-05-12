@@ -79,7 +79,7 @@ const AdminPage = () => {
   const removeStudent = async (rollNo: string) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/student/remove?rollNo=${rollNo}`,{
+        `https://presence-pro-backend.onrender.com/student/remove?rollNo=${rollNo}`,{
           headers: {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const AdminPage = () => {
         setStudents((prev) => prev.filter((s) => s.rollNo !== rollNo));
       }
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -100,7 +100,7 @@ const AdminPage = () => {
     isCurrentlyEnrolling: boolean
   ) => {
     try {
-      const endpoint = `http://localhost:3000/student/enroll?rollNo=${rollNo}`
+      const endpoint = `https://presence-pro-backend.onrender.com/student/enroll?rollNo=${rollNo}`
 
       const res = await axios.put(
         endpoint,
@@ -135,7 +135,7 @@ const AdminPage = () => {
       queryParams.append("pageSize", PAGE_SIZE.toString());
 
       const res = await axios.get<StudentResponse>(
-        `http://localhost:3000/student/students?${queryParams.toString()}`,
+        `https://presence-pro-backend.onrender.com/student/students?${queryParams.toString()}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -222,7 +222,7 @@ const AdminPage = () => {
                     <Button
                       size="sm"
                       className="cursor-pointer"
-                      variant="secondary"
+                      variant="destructive"
                       onClick={() => removeStudent(s.rollNo)}
                     >
                       Remove
